@@ -1,15 +1,25 @@
-// Generics struct definitions
+// Generics method definitions
 
-#[derive(Debug)]
-struct Point<T, U> {
-    x: T,
-    y: U,
+struct Point<X1, Y1> {
+    x: X1,
+    y: Y1,
+}
+
+// declaring T as a generic type after impl, Rust can identify that the type in the angle brackets in Point is a generic type rather than a concrete type.
+impl<X1, Y1> Point<X1, Y1> {
+    fn mixup<X2, Y2>(self, other: Point<X2, Y2>) -> Point<X1, Y2> {
+        Point {
+            x: self.x,
+            y: other.y,
+        }
+    }
 }
 
 fn main() {
-    let both_int = Point { x: 5, y: 10 };
-    let both_float = Point { x: 1.0, y: 4.0 };
-    let integer_and_float = Point { x: 5, y: 4.0 };
+    let p1 = Point { x: 5, y: 10.4 };
+    let p2 = Point { x: "Hello", y: 'c' };
 
-    println!("{:?}\n{:?}\n{:?}\n",both_int,both_float,integer_and_float);
+    let p3 = p1.mixup(p2);
+
+    println!("p3.x = {}, p3.y = {}", p3.x, p3.y);
 }
