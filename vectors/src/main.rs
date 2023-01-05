@@ -26,4 +26,30 @@ fn main() {
         Some(x) => println!("element at index is {}",x),
         None => println!("no element at index"),
     }
+
+    // STORING ENUM VARIANTS INSIDE VECTOR
+
+    #[derive(Debug)] // adding debug trait
+    enum SS {
+        Int(i32),
+        Float(f64),
+        Text(String),
+    }
+
+    let row = vec![
+        SS::Int(3),
+        SS::Float(6.89),
+        SS::Text(String::from("Hello bhavana")),
+    ];
+
+    for i in &row {
+        println!("elements in row are {:?}",i);
+    }
+
+    match &row[1] {
+        SS::Int(i) => println!("value of integer is {}",i),
+        SS::Float(i) => println!("value of string is {}",i),
+        SS::Text(i) => println!("value of text is {}",i),
+
+    }
 }
