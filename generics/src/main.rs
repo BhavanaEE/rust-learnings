@@ -1,26 +1,15 @@
-// Generics functions definitons
+// Generics struct definitions
 
-fn main() {
-    let number_list = vec![34, 50, 25, 100, 65];
-
-    let result = get_largest(&number_list);
-    println!("The largest number is {}", result);
-    assert_eq!(*result, 100);
-
-    let char_list = vec!['y', 'm', 'a', 'q'];
-
-    let result = get_largest(&char_list);
-    println!("The largest char is {}", result);
-    assert_eq!(*result, 'y');
+#[derive(Debug)]
+struct Point<T, U> {
+    x: T,
+    y: U,
 }
 
-fn get_largest<T: PartialOrd + Copy>(list: &[T]) -> &T {
-    let mut largest = &list[0];
+fn main() {
+    let both_int = Point { x: 5, y: 10 };
+    let both_float = Point { x: 1.0, y: 4.0 };
+    let integer_and_float = Point { x: 5, y: 4.0 };
 
-    for item in list {
-        if item > largest {
-            largest = item;
-        }
-    }
-    largest
+    println!("{:?}\n{:?}\n{:?}\n",both_int,both_float,integer_and_float);
 }
